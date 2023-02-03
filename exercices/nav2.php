@@ -2,8 +2,8 @@
 
 $pages = [
     ['id'=> 5, 'contenu' => ['titre' => 'Accueil', 'sousTitre' => 'Bienvenue']],
-    ['id'=> 6, 'contenu' => ['titre' => 'Accueil', 'sousTitre' => 'Bienvenue']],
-    ['id'=> 7,  'contenu' => ['titre' => 'Accueil', 'sousTitre' => 'Bienvenue']]
+    ['id'=> 6, 'contenu' => ['titre' => 'Contact', 'sousTitre' => 'Envoyez nous un mail']],
+    ['id'=> 7,  'contenu' => ['titre' => 'Réservations', 'sousTitre' => 'PArce que c\'est bien']]
 ];
 
 
