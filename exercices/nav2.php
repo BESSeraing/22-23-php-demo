@@ -7,18 +7,32 @@ $pages = [
 ];
 
 
+
 displayNav($pages);
 
+// Afficher le titre de la page cliquée dans le menu
+$id = 1;
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
+// J'ai déjà un id à coup sur
+foreach ($pages as $page) {
+    if ($page['id'] == $id) {
+        echo '<h1>'. $page['contenu']['titre'] . '</h1>';
+        break;
+    }
+}
 // Afficher le titre de la page cliquée dans le menu
 
 
 function displayNav(array $pages) {
     echo '<nav>
         <ul>';
-    echo '<li><a href="?id=5">Accueil</a></li>';
-    echo '<li><a href="?id=6">Contact</a></li>';
-    echo '<li><a href="?id=7">Réservations</a></li>';
-// Faites une boucle sur ce tableau pour écrire le menu parce que la méthode utilisée ci dessus n'est pas acceptable
+    foreach ($pages as $page) {
+        echo '<li><a href="?id=' .$page['id']. '">'. $page['contenu']['titre'] .'</a></li>';
+
+    }
+
 
 echo '</ul>
 </nav>';
