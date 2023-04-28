@@ -9,6 +9,17 @@ if (isset($_GET['action']) && $_GET['action'] === 'create') {
     } else {
         showCreateForm();
     }
+} else if (isset($_GET['action']) && $_GET['action'] === 'delete') {
+    deleteRea($_GET['id']);
+    header('Location: admin.php');
+} else if (isset($_GET['action']) && $_GET['action'] === 'update') {
+    // Le code qui suit est celui qui permet de créer, il faut le modifier pour que ça mettre à jour les données plutôt que de créer une nouvelle réalisation
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        insertIntoDB();
+        showRealisationsTable();
+    } else {
+        showCreateForm();
+    }
 } else {
     showRealisationsTable();
 }
@@ -66,7 +77,7 @@ function showRealisationsTable() {
             <td>'.$realisation['id'].'</td>
             <td>'.$realisation['title'].'</td>
             <td><img src="assets/img/portfolio/'.$realisation['image'].'" alt="" style="width: 120px;"></td>
-            <td><a href="?action=update">modifier</a></td>
+            <td><a href="?action=update&id='.$realisation['id'].'">modifier</a> <a href="?action=delete&id='.$realisation['id'].'">supprimer</a></td>
 </tr>';
 
     }
@@ -74,4 +85,13 @@ function showRealisationsTable() {
     echo '</tbody>
 </table>
 ';
+}
+
+
+function deleteRea(mixed $id)
+{
+    $pdo = new PDO('mysql:host=127.0.0.1;dbname=my_portfolio', 'root','root');
+    $query = $pdo->prepare('DELETE FROM `realisations` WHERE id = :id');
+    $query->execute(['id' => $id]);
+
 }
